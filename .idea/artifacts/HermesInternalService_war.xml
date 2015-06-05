@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="HermesInternalService:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="HermesInternalService.war">
+      <element id="artifact" artifact-name="HermesInternalService:war exploded" />
+    </root>
+  </artifact>
+</component>
