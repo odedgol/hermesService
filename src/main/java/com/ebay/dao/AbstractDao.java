@@ -3,8 +3,11 @@ package com.ebay.dao;
 /**
  * Created by Odedgol on 6/13/2015.
  */
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDao {
@@ -18,6 +21,10 @@ public abstract class AbstractDao {
 
     public void persist(Object entity) {
         getSession().persist(entity);
+    }
+    
+    public void persist(List<Object> entities) {    	
+    	
     }
 
     public void delete(Object entity) {

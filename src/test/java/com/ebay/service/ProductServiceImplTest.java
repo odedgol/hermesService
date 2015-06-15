@@ -1,5 +1,5 @@
 package com.ebay.service;
-import com.ebay.dao.AggregationQueueDAO;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,35 +7,41 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import static org.junit.Assert.*;
+import com.ebay.dao.AggregationResendDAO;
+import com.ebay.response.ResendResponse;
+import com.ebay.response.ResendStatus;
 
 /**
  * Created by Odedgol on 6/13/2015.
  */
-@ContextConfiguration(locations = {"classpath:test-db-context.xml"})
+
+@ContextConfiguration(locations = { "classpath:test-db-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
+@TransactionConfiguration(defaultRollback = true)
 public class ProductServiceImplTest {
 
-    // Create Mock
+	@Mock
+	private AggregationResendDAO aggregationResendDAO;
 
-    @Mock
-    private AggregationQueueDAO aggregationQueueDAO;
+	@InjectMocks
+	private ProductServiceImpl productServiceImpl;
 
-    @InjectMocks
-    @Autowired
-    private ProductService productService;
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
 
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void testResendProduct() throws Exception {
-        Mockito.verifyZeroInteractions(aggregationQueueDAO);
-    }
+	@Test
+	public void testResendProduct() throws Exception {
+		String epid = "epid";
+		ResendResponse resendResponse = new ResendResponse(epid, ResendStatus.Ok);
+		Mockito.when(aggregationResendDAO.resendProductByEpid(epid))
+				.thenReturn(resendResponse);
+		productServiceImpl.resendProduct(epid);
+		Mockito.verify(aggregationResendDAO).resendProductByEpid(epid);
+	}
 }
