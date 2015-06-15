@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.ebay.dao.AggregationResendDAO;
 import com.ebay.response.ResendResponse;
 import com.ebay.response.ResendStatus;
 
