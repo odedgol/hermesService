@@ -1,30 +1,28 @@
 package com.ebay.service;
 
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.mockito.exceptions.base.MockitoException;
 
-import com.ebay.response.ResendResponse;
+import com.ebay.model.DO.AggregationResendDO;
+import com.ebay.repository.AggregationResendRespository;
+import com.ebay.response.DbResendResponse;
 import com.ebay.response.ResendStatus;
 
 /**
  * Created by Odedgol on 6/13/2015.
  */
 
-@ContextConfiguration(locations = { "classpath:test-db-context.xml" })
-@RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(defaultRollback = true)
 public class ProductServiceImplTest {
 
 	@Mock
-	private AggregationResendDAO aggregationResendDAO;
+	private AggregationResendRespository aggregationResendRespository;
 
 	@InjectMocks
 	private ProductServiceImpl productServiceImpl;
@@ -35,12 +33,21 @@ public class ProductServiceImplTest {
 	}
 
 	@Test
-	public void testResendProduct() throws Exception {
+	public void testResendProductFail() throws Exception {
 		String epid = "epid";
-		ResendResponse resendResponse = new ResendResponse(epid, ResendStatus.Ok);
-		Mockito.when(aggregationResendDAO.resendProductByEpid(epid))
-				.thenReturn(resendResponse);
-		productServiceImpl.resendProduct(epid);
-		Mockito.verify(aggregationResendDAO).resendProductByEpid(epid);
+		DbResendResponse resendResponse = new DbResendResponse(epid, ResendStatus.Error);
+		Mockito.when(aggregationResendRespository.save(Mockito.any(AggregationResendDO.class)))
+				.thenThrow(new MockitoException(epid));
+		DbResendResponse actualResponse = productServiceImpl.resendProduct(epid);
+		Assert.assertThat(actualResponse, Matchers.equalTo(resendResponse));
 	}
+	
+	@Test
+	public void testResendProductSuccess() throws Exception {
+		String epid = "epid";
+		DbResendResponse resendResponse = new DbResendResponse(epid, ResendStatus.Ok);
+		DbResendResponse actualResponse = productServiceImpl.resendProduct(epid);
+		Assert.assertThat(actualResponse, Matchers.equalTo(resendResponse));
+	}
+	
 }

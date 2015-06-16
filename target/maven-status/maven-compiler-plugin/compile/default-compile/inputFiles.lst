@@ -1,8 +1,12 @@
 C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\mvc\ProductController.java
-C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\model\AggregationMapping.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\exception\InvalidRequestException.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\model\DO\AggregationResendDO.java
 C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\service\ProductService.java
-C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\dao\AggregationQueueDAO.java
-C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\dao\AggregationQueueDAOimpl.java
-C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\dao\AbstractDao.java
-C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\model\AggregationQueue.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\response\DbResendResponse.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\exception\ErrorResource.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\repository\AggregationResendRespository.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\response\ResendResponse.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\exception\FieldErrorResource.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\response\ResendStatus.java
+C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\exception\MyExceptionsHandler.java
 C:\Users\ogoldberg\gitRepos\hermesService\src\main\java\com\ebay\service\ProductServiceImpl.java

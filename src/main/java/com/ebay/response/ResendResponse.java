@@ -1,70 +1,31 @@
 package com.ebay.response;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+
 public class ResendResponse {
 
-	private String epid;
-	private ResendStatus resendStatus;
+	private List<String> errors = new ArrayList<String>();
+	private HttpStatus httpStatus;
+	private HttpStatus code;
+	private String url;
 
-	public ResendResponse(String epid, ResendStatus resendStatus) {
-		this.epid = epid;
-		this.resendStatus = resendStatus;
+	public ResendResponse(List<String> errors, HttpStatus httpStatus,
+			HttpStatus code, String url) {
+		this.errors = errors;
+		this.httpStatus = httpStatus;
+		this.code = code;
+		this.url = url;
 	}
 
-	public String getEpid() {
-		return epid;
-	}
-
-	public void setEpid(String epid) {
-		this.epid = epid;
-	}
-
-	public ResendStatus getResendStatus() {
-		return resendStatus;
-	}
-
-	public void setResendStatus(ResendStatus resendStatus) {
-		this.resendStatus = resendStatus;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((epid == null) ? 0 : epid.hashCode());
-		result = prime * result
-				+ ((resendStatus == null) ? 0 : resendStatus.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		ResendResponse other = (ResendResponse) obj;
-		if (epid == null) {
-			if (other.epid != null) {
-				return false;
-			}
-		} else if (!epid.equals(other.epid)) {
-			return false;
-		}
-		if (resendStatus != other.resendStatus) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "ResendResponse [epid=" + epid + ", resendStatus="
-				+ resendStatus + "]";
+	public ResendResponse(String error, HttpStatus httpStatus, HttpStatus code,
+			String url) {
+		this.errors.add(error);
+		this.httpStatus = httpStatus;
+		this.code = code;
+		this.url = url;
 	}
 
 }

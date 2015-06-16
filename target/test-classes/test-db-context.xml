@@ -7,7 +7,7 @@
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
                             http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<context:annotation-config />
+    <context:annotation-config/>
 
     <context:property-placeholder location="classpath:application.properties"/>
 
@@ -20,27 +20,34 @@
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-
     </bean>
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan">
-            <list>
-                <value>com.ebay.model</value>
-            </list>
-        </property>
-        <property name="hibernateProperties">
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+        <property name="packagesToScan" value="com.ebay.model"/>
+        <property name="jpaProperties">
             <props>
+                <!-- Configures the used database dialect. This allows Hibernate to create SQL that is optimized for the used database.-->
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql:false}</prop>
-                <prop key="hibernate.format_sql">${hibernate.format_sql:false}</prop>
+                <!-- Specifies the action that is invoked to the database when the Hibernate SessionFactory is created or closed.-->
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <!-- Configures the naming strategy that is used when Hibernate creates new database objects and schema elements -->
+                <prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
+                <!-- If the value of this property is true, Hibernate writes all SQL statements to the console. -->
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <!--If the value of this property is true, Hibernate will use prettyprint when it writes SQL to the console. -->
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
             </props>
         </property>
-    </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <bean id="persistenceExceptionTranslationPostProcessor"

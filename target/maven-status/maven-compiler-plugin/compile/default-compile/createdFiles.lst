@@ -1,8 +1,0 @@
-com\ebay\service\ProductServiceImpl.class
-com\ebay\model\AggregationQueue.class
-com\ebay\dao\AggregationQueueDAO.class
-com\ebay\model\AggregationMapping.class
-com\ebay\dao\AbstractDao.class
-com\ebay\service\ProductService.class
-com\ebay\mvc\ProductController.class
-com\ebay\dao\AggregationQueueDAOimpl.class

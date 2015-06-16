@@ -1,18 +1,22 @@
 package com.ebay.service;
 
-import com.ebay.model.AggregationResend;
+import com.ebay.model.DO.AggregationResendDO;
 import com.ebay.repository.AggregationResendRespository;
 import com.ebay.response.ResendStatus;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.ebay.response.ResendResponse;
+import com.ebay.response.DbResendResponse;
 
 /**
  * Created by Odedgol on 6/13/2015.
  */
-
+@Service("ProductService")
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
     private static final Logger logger = LoggerFactory
@@ -22,14 +26,14 @@ public class ProductServiceImpl implements ProductService {
     AggregationResendRespository repository;
 
     @Override
-    public ResendResponse resendProduct(String epid) {
-        ResendResponse resendResponse;
+    public DbResendResponse resendProduct(String epid) {
+        DbResendResponse resendResponse;
         try {
-            repository.save(new AggregationResend(epid));
-            resendResponse = new ResendResponse(epid, ResendStatus.Ok);
+            repository.save(new AggregationResendDO(epid));
+            resendResponse = new DbResendResponse(epid, ResendStatus.Ok);
         } catch (Exception exception){
             logger.info("could not update Agg_Resend table with " + epid, exception);
-            resendResponse = new ResendResponse(epid, ResendStatus.Error);
+            resendResponse = new DbResendResponse(epid, ResendStatus.Error);
 
         }
         return resendResponse;

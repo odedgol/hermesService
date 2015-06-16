@@ -1,18 +1,20 @@
 package com.ebay.repository;
 
-import com.ebay.model.AggregationResend;
-import com.ebay.response.ResendResponse;
+import com.ebay.model.DO.AggregationResendDO;
+import com.ebay.response.DbResendResponse;
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
  * Created by Odedgol on 6/15/2015.
  */
-public interface AggregationResendRespository extends CrudRepository<AggregationResend, Long> {
+public interface AggregationResendRespository extends CrudRepository<AggregationResendDO, Long> {
 
     /**
      * @param persisted
      * @return AggregationResend
      */
-    AggregationResend save(AggregationResend persisted);
+    @SuppressWarnings("unchecked")
+	AggregationResendDO save(AggregationResendDO persisted);
 
 }
