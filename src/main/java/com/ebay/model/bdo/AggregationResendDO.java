@@ -1,4 +1,4 @@
-package com.ebay.model.DO;
+package com.ebay.model.bdo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

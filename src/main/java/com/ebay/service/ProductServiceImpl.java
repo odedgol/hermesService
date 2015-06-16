@@ -1,6 +1,6 @@
 package com.ebay.service;
 
-import com.ebay.model.DO.AggregationResendDO;
+import com.ebay.model.bdo.AggregationResendDO;
 import com.ebay.repository.AggregationResendRespository;
 import com.ebay.response.ResendStatus;
 
@@ -15,8 +15,7 @@ import com.ebay.response.DbResendResponse;
 /**
  * Created by Odedgol on 6/13/2015.
  */
-@Service("ProductService")
-@Transactional
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private static final Logger logger = LoggerFactory

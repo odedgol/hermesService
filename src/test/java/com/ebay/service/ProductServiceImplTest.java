@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.exceptions.base.MockitoException;
 
-import com.ebay.model.DO.AggregationResendDO;
+import com.ebay.model.bdo.AggregationResendDO;
 import com.ebay.repository.AggregationResendRespository;
 import com.ebay.response.DbResendResponse;
 import com.ebay.response.ResendStatus;

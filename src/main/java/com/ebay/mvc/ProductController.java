@@ -39,12 +39,13 @@ public class ProductController {
 	@ResponseBody
 	public ResponseEntity<String> resendProduct(
 			@RequestParam(value = "epid", required = true) String epid,
-			BindingResult bindingResult) throws SQLException {
+			final BindingResult bindingResult) throws SQLException {
 		if (bindingResult.hasErrors()) {
 			throw new InvalidRequestException("Binding Result is Invalid",
 					bindingResult);
 		}
 		DbResendResponse resendProduct = ProductService.resendProduct(epid);
+		System.out.println(resendProduct.toString());
 		if (resendProduct.getResendStatus().equals(ResendStatus.Error)) {
 			throw new SQLException("database connection failed for epid ( "
 					+ resendProduct.getEpid() + " )");

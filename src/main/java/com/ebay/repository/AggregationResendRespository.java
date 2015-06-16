@@ -1,6 +1,6 @@
 package com.ebay.repository;
 
-import com.ebay.model.DO.AggregationResendDO;
+import com.ebay.model.bdo.AggregationResendDO;
 import com.ebay.response.DbResendResponse;
 
 import org.springframework.data.repository.CrudRepository;
