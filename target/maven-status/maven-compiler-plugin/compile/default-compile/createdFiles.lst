@@ -1,12 +1,14 @@
 com\ebay\service\ProductServiceImpl.class
-com\ebay\exception\FieldErrorResource.class
-com\ebay\exception\InvalidRequestException.class
+com\ebay\mvc\Message.class
 com\ebay\exception\MyExceptionsHandler.class
+com\ebay\exception\InvalidRequestException.class
+com\ebay\exception\FieldErrorResource.class
 com\ebay\response\ResendResponse.class
 com\ebay\repository\AggregationResendRespository.class
-com\ebay\mvc\ProductController.class
 com\ebay\service\ProductService.class
+com\ebay\mvc\ProductController.class
 com\ebay\response\DbResendResponse.class
+com\ebay\mvc\ResendResponse.class
 com\ebay\model\bdo\AggregationResendDO.class
 com\ebay\response\ResendStatus.class
 com\ebay\exception\ErrorResource.class
