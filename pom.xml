@@ -197,8 +197,6 @@
 	</dependencies>
 
 
-
-
 	<build>
 		<finalName>HermesInternalService</finalName>
 		<plugins>
